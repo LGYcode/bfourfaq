@@ -21,149 +21,86 @@
   }
   * { box-sizing: border-box; }
   body {
-    margin: 0;
-    padding: 0;
-    background: var(--bg);
-    color: var(--fg);
+    margin: 0; padding: 0;
+    background: var(--bg); color: var(--fg);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
                  "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.75;
+    font-size: 16px; line-height: 1.75;
     -webkit-font-smoothing: antialiased;
   }
-  .faq-preamble {
-    margin-bottom: 24px;
-    color: var(--muted);
-  }
+  /* .container { max-width: 880px; margin: 0 auto; padding: 48px 40px 96px; } */
+
+  /* .faq-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; } */
+  /* .faq-header h1 { margin: 0 0 8px; font-size: 1.9em; font-weight: 700; color: var(--fg); } */
+  /* .faq-header p { margin: 0; color: var(--muted); font-size: 0.95em; } */
+
+  /* Language switcher */
+  /* .lang-switch { display: flex; align-items: center; gap: 8px; } */
+  /* .lang-switch label { color: var(--muted); font-size: 0.85em; } */
+  /* .lang-switch select {
+    padding: 7px 12px; font-size: 0.9em; font-family: inherit; color: var(--fg);
+    background: #fff; border: 1px solid var(--border-strong); border-radius: 8px;
+    cursor: pointer; transition: border-color .15s ease, box-shadow .15s ease;
+  } */
+  /* .lang-switch select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); } */
+
+  /* Expand / collapse controls */
+  /* .faq-controls { display: flex; gap: 10px; margin-bottom: 16px; } */
+  /* .faq-controls button {
+    padding: 7px 14px; font-size: 0.85em; color: var(--accent);
+    background: var(--accent-soft); border: 1px solid transparent;
+    border-radius: 6px; cursor: pointer; font-family: inherit;
+    transition: background .15s ease;
+  } */
+  /* .faq-controls button:hover { background: #dbe7ff; } */
 
   /* Accordion list */
-  .faq-list {
-    border-top: 1px solid var(--border);
-  }
+  .faq-list { border-top: 1px solid var(--border); }
+  .faq-item { border-bottom: 1px solid var(--border); }
 
-  /* Each FAQ item */
-  .faq-item {
-    border-bottom: 1px solid var(--border);
-  }
-  .faq-item:first-child {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-  }
-
-  /* The clickable question header */
   .faq-q {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 18px 18px;
-    background: var(--q-bg);
-    border: none;
-    border-left: 3px solid transparent;
-    text-align: left;
-    cursor: pointer;
-    font: inherit;
-    color: var(--fg);
+    width: 100%; display: flex; align-items: center; gap: 14px;
+    padding: 18px 18px; background: var(--q-bg); border: none;
+    border-left: 3px solid transparent; text-align: left; cursor: pointer;
+    font: inherit; color: var(--fg);
     transition: background .15s ease, border-color .15s ease;
   }
   .faq-q:hover { background: var(--q-bg-hover); }
-  .faq-q:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: -2px;
-  }
+  .faq-q:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 
-  /* The "Q" badge */
   .faq-q-mark {
-    flex: 0 0 auto;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    border-radius: 8px;
-    background: var(--accent);
-    color: #fff;
-    font-weight: 700;
-    font-size: 0.85em;
-    letter-spacing: 0.02em;
+    flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 8px; background: var(--accent); color: #fff;
+    font-weight: 700; font-size: 0.85em; letter-spacing: 0.02em;
   }
-  .faq-q-text {
-    flex: 1 1 auto;
-    font-weight: 600;
-    color: var(--fg);
-    line-height: 1.5;
-  }
-  .faq-q-arrow {
-    flex: 0 0 auto;
-    color: var(--muted);
-    display: inline-flex;
-    transition: transform .2s ease, color .15s ease;
-  }
-  .faq-q[aria-expanded="true"] .faq-q-arrow {
-    transform: rotate(180deg);
-    color: var(--accent);
-  }
-  .faq-q[aria-expanded="true"] {
-    background: var(--q-active);
-    border-left-color: var(--accent);
-  }
+  .faq-q-text { flex: 1 1 auto; font-weight: 600; color: var(--fg); line-height: 1.5; }
+  .faq-q-arrow { flex: 0 0 auto; color: var(--muted); display: inline-flex; transition: transform .2s ease, color .15s ease; }
+  .faq-q[aria-expanded="true"] .faq-q-arrow { transform: rotate(180deg); color: var(--accent); }
+  .faq-q[aria-expanded="true"] { background: var(--q-active); border-left-color: var(--accent); }
 
-  /* The collapsible answer panel */
-  .faq-a {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height .3s ease;
-  }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
   .faq-a-inner {
-    padding: 4px 20px 24px 52px;
-    border-left: 3px solid var(--accent-soft);
+    padding: 4px 20px 24px 52px; border-left: 3px solid var(--accent-soft);
     margin-left: 18px;
-    margin-top: 0;
   }
 
-  /* Answer content styling */
   .faq-a-inner p { margin: 0 0 1em; }
   .faq-a-inner p:last-child { margin-bottom: 0; }
   .faq-a-inner ul, .faq-a-inner ol { margin: 0 0 1em; padding-left: 1.6em; }
   .faq-a-inner li { margin: 0.3em 0; }
   .faq-a-inner strong { font-weight: 700; color: #1f2329; }
-  .faq-a-inner h1,.faq-a-inner h2,.faq-a-inner h3,.faq-a-inner h4,.faq-a-inner h5,.faq-a-inner h6 {
-    color: #1f2329; font-weight: 700; line-height: 1.3;
-    margin: 1.4em 0 0.5em;
-  }
-  .faq-a-inner h3 { font-size: 1.15em; }
-  .faq-a-inner h4 { font-size: 1.05em; }
   .faq-a-inner a { color: var(--accent); text-decoration: none; }
   .faq-a-inner a:hover { text-decoration: underline; }
-  .faq-a-inner img {
-    max-width: 100%; height: auto; border-radius: 6px; margin: 1em 0;
-    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
-  }
-  .faq-a-inner table {
-    width: 100%; border-collapse: collapse; margin: 1.2em 0;
-    font-size: 0.95em; border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
-  }
-  .faq-a-inner th, .faq-a-inner td {
-    padding: 10px 14px; border: 1px solid var(--border); text-align: left; vertical-align: top;
-  }
+  .faq-a-inner img { max-width: 100%; height: auto; border-radius: 6px; margin: 1em 0; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+  .faq-a-inner table { width: 100%; border-collapse: collapse; margin: 1.2em 0; font-size: 0.95em; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .faq-a-inner th, .faq-a-inner td { padding: 10px 14px; border: 1px solid var(--border); text-align: left; vertical-align: top; }
   .faq-a-inner th { background: var(--accent-soft); font-weight: 600; }
   .faq-a-inner tr:nth-child(even) td { background: #fafbfc; }
-  .faq-a-inner blockquote {
-    margin: 1em 0; padding: 12px 18px; background: var(--quote-bg);
-    border-left: 4px solid var(--accent); color: var(--muted); border-radius: 0 6px 6px 0;
-  }
-  .faq-a-inner code {
-    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-    background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; color: #d63384;
-  }
-  .faq-a-inner pre {
-    background: var(--code-bg); padding: 14px 16px; border-radius: 8px;
-    overflow-x: auto; border: 1px solid var(--border);
-  }
-  .faq-a-inner pre code { background: none; padding: 0; color: var(--fg); }
-  .faq-a-inner hr { border: none; border-top: 1px solid var(--border); margin: 2em 0; }
+  .faq-a-inner blockquote { margin: 1em 0; padding: 12px 18px; background: var(--quote-bg); border-left: 4px solid var(--accent); color: var(--muted); border-radius: 0 6px 6px 0; }
+  .faq-a-inner code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; color: #d63384; }
 
   @media (max-width: 600px) {
+    .container { padding: 28px 18px 64px; }
     .faq-a-inner { padding-left: 32px; margin-left: 12px; }
     .faq-q { padding: 15px 14px; }
     .faq-q-mark { width: 24px; height: 24px; font-size: 0.78em; }
@@ -171,134 +108,135 @@
 </style>
 </head>
 <body>
-<div class="faq-list">
-<div class="faq-item" id="faq-0">
-  <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-0">
-    <span class="faq-q-mark">Q</span>
-    <span class="faq-q-text">My device cannot connect to WiFi. What should I do?</span>
-    <span class="faq-q-arrow" aria-hidden="true">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-    </span>
-  </button>
-  <div class="faq-a" id="faq-a-0" role="region" aria-labelledby="faq-0">
-    <div class="faq-a-inner">
-<p><strong>A:</strong> Please follow the steps below in order:</p><ol><li>Power on the base station and open the BFOUR+ app, and place the base station close to your phone.</li><li>Open the app and tap &quot;Add Device&quot; on the home screen.</li><li>Select your product model from the list</li><li>On the search page, tap the device that matches your model name (BF-70 or BF-80).</li><li>Tap &quot;Refresh&quot;.</li><li>Select the WiFi network you want to connect to and enter the password.</li></ol><p>Once you have completed the above steps, your device should be able to connect normally.</p><p>If you are still unable to connect, please submit your issue through the Problem Feedback feature in the app, along with a screenshot of your order, and we will process it as soon as possible.</p>
-    </div>
-  </div>
+<div class="container">
+  <!-- <div class="faq-top"> -->
+    <!-- <div class="faq-header"> -->
+      <!-- <h1 id="faq-title">FAQ</h1> -->
+      <!-- <p id="faq-subtitle">Click a question to expand the answer</p> -->
+    <!-- </div> -->
+    <!-- <div class="lang-switch">
+      <label for="lang-select" id="lang-label">Language</label>
+      <select id="lang-select"></select>
+    </div> -->
+  <!-- </div> -->
+  <!-- <div class="faq-controls">
+    <button type="button" id="expand-all">Expand all</button>
+    <button type="button" id="collapse-all">Collapse all</button>
+  </div> -->
+  <div class="faq-list" id="faq-list"><!-- 由 JS 渲染 --></div>
 </div>
-<div class="faq-item" id="faq-1">
-  <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-1">
-    <span class="faq-q-mark">Q</span>
-    <span class="faq-q-text">My thermometer shows an &quot;Out of Range&quot; alert. What causes this and what should I do?</span>
-    <span class="faq-q-arrow" aria-hidden="true">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-    </span>
-  </button>
-  <div class="faq-a" id="faq-a-1" role="region" aria-labelledby="faq-1">
-    <div class="faq-a-inner">
-<p><strong>A:</strong>The &quot;Out of Range&quot; alert typically indicates that the signal connection between the probe and the receiver has been interrupted. Please follow the steps below to troubleshoot:</p><p><strong>1.Please make sure the probe is fully charged:<br /></strong>(1) BF-30 / BF-40: Charge on the base station for 2–3 minutes<br />(2) BF-70 / BF-80: Charge on the base station for 10–15 minutes</p><p>If the issue persists after charging, please try re-pairing / re-adding the probe with the receiver.</p><p><strong>2. Check the distance and signal interference</strong></p><p>(1) During use, please ensure the receiver is kept as close to the probe as possible.</p><p>(2) Check for signal obstructions such as:</p><p>Thick cookware (cast iron pots, double-layered stainless steel pots, etc.)</p><p>Other electronic devices (which may cause signal interference)</p><p>(3) You may also try placing the receiver near the front or side of the oven for better signal reception.</p><p><strong>3. Check the usage environment and temperature limits</strong></p><p>(1) Food temperature should be kept within the range of -10°C ~ 100°C<br />(2) Ambient temperature should be kept within the range of 0°C ~ 400°C</p><p>Please note: If the internal temperature of the meat exceeds the recommended safe value (for example, above the suggested doneness level), the system may also trigger an alert. Please check whether this applies to your situation.</p><p><strong>4. On-site test</strong></p><p>When the &quot;Out of Range&quot; alert appears, please try moving the receiver closer to the probe (e.g., next to the oven) and check whether the signal recovers.</p><p>If the issue persists after following the above steps, please submit your issue through the Problem Feedback feature in the app, along with a screenshot of your order, and we will process it as soon as possible.</p><p>Thank you for your cooperation!</p>
-    </div>
-  </div>
-</div>
-<div class="faq-item" id="faq-2">
-  <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-2">
-    <span class="faq-q-mark">Q</span>
-    <span class="faq-q-text">My thermometer frequently disconnects and the signal is unstable. What should I do?</span>
-    <span class="faq-q-arrow" aria-hidden="true">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-    </span>
-  </button>
-  <div class="faq-a" id="faq-a-2" role="region" aria-labelledby="faq-2">
-    <div class="faq-a-inner">
-<p><strong>A:</strong>Please follow the steps below to troubleshoot:</p><p><strong>1.Restart the device:</strong> Power off and restart the base station, and place the probe back into the base station then take it out again to allow the device to re-pair and reconnect.</p><p><strong>2.Reduce the distance: </strong>Place the base station close to the probe to ensure they are within the effective Bluetooth transmission range, and minimize obstacles in between (such as walls, metal objects, etc.).</p><p><strong>3.Avoid signal interference: </strong>Ensure the base station is kept away from other Bluetooth devices, Wi-Fi routers, or microwave ovens, as well as other electronic devices that may cause interference.</p><p><strong>4.Check battery level:</strong> Ensure both the probe and the base station have sufficient battery power, as low battery may also cause unstable connection.</p><p>If the issue persists after following the above steps, please submit your issue through the Problem Feedback feature in the app, along with a screenshot of your order, and we will process it as soon as possible.</p>
-    </div>
-  </div>
-</div>
-<div class="faq-item" id="faq-3">
-  <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-3">
-    <span class="faq-q-mark">Q</span>
-    <span class="faq-q-text">After connecting, my device does not display the ambient temperature. What causes this and what should I do?</span>
-    <span class="faq-q-arrow" aria-hidden="true">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-    </span>
-  </button>
-  <div class="faq-a" id="faq-a-3" role="region" aria-labelledby="faq-3">
-    <div class="faq-a-inner">
-<p><strong>A: </strong>Please follow the steps below to confirm:</p><p><strong>1. Check the probe insertion method</strong></p><p>Please insert the probe into the thickest part of the meat, and make sure all safety lines on the probe are fully submerged into the meat.</p><p><strong>2. Confirm the display interface</strong></p><p>After proper placement, the base station and the app interface should display both &quot;Internal Temperature&quot; and &quot;Ambient Temperature&quot; simultaneously. Please check carefully.</p><p><strong>3. Check the Bluetooth connection status</strong></p><p>(1) Please confirm whether the connection between the base station and the probe is stable.</p><p>(2) Try moving the base station closer to the probe.</p><p>(3) Or place the probe back into the base station, then take it out again to re-pair.</p><p><strong>4. Ambient temperature sensor notes (please pay attention)</strong></p><p>(1) The measuring range of the ambient temperature is 20–400°C. It will not display below 20°C.</p><p>(2) The ambient temperature sensor is embedded near the top of the probe's ceramic handle.</p><p><strong>5. Common causes of abnormal temperature display</strong></p><p>(1) It takes longer for heat to transfer through the ceramic handle to the sensor.</p><p>(2) Cold meat can conduct low temperature through the stainless steel probe to the sensor, affecting the initial reading.</p><p>This is a normal phenomenon. During low-temperature cooking, the ambient temperature reading will gradually become accurate as cooking time extends.</p><p>If the issue persists after following the above steps, please submit your issue through the Problem Feedback feature in the app, along with a screenshot of your order, and we will process it as soon as possible.</p><p>Thank you for your cooperation and understanding!</p>
-    </div>
-  </div>
-</div>
-<div class="faq-item" id="faq-4">
-  <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-4">
-    <span class="faq-q-mark">Q</span>
-    <span class="faq-q-text">My thermometer readings are inaccurate and differ from those of my instant-read thermometer. What should I do?</span>
-    <span class="faq-q-arrow" aria-hidden="true">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-    </span>
-  </button>
-  <div class="faq-a" id="faq-a-4" role="region" aria-labelledby="faq-4">
-    <div class="faq-a-inner">
-<p><strong>A: </strong>Our wireless probe is specifically designed for low-power long-term monitoring. Temperature readings are taken every 2 seconds and updated via Bluetooth. Its heating response speed cannot be directly compared to that of a plug-and-play instant-read thermometer, and the time required to reach thermal equilibrium is much slower. However, if you continuously monitor the temperature during cooking, its readings are accurate and reliable.</p><p>We recommend using the ice water calibration method for testing and verification:</p><p>1.Fill a glass with ice cubes.</p><p>2.Add cold water and stir for about 15 seconds.</p><p>3.Fully submerge the probe in the center of the ice water.</p><p>4.Let it sit for 15 seconds, then read the value.</p><p>Under normal conditions, the reading in the ice water mixture should be close to 0°C. </p><p>If the deviation is significant, please submit your issue through the Problem Feedback feature in the app, along with a screenshot of your order, and we will process it as soon as possible.</p>
-    </div>
-  </div>
-</div>
-<div class="faq-item" id="faq-5">
-  <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-5">
-    <span class="faq-q-mark">Q</span>
-    <span class="faq-q-text">I feel that the battery life of my thermometer is not long enough. What should I do?</span>
-    <span class="faq-q-arrow" aria-hidden="true">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-    </span>
-  </button>
-  <div class="faq-a" id="faq-a-5" role="region" aria-labelledby="faq-5">
-    <div class="faq-a-inner">
-<p><strong>A: </strong>Please first confirm the following:</p><p><strong>1. Ensure both devices are fully charged</strong></p><p>BF-30 / BF-40: Place the probe on the base station and charge for 3–5 minutes.</p><p>BF-70 / BF-80: Place the probe on the base station and charge for 10–15 minutes.</p><p><strong>2. Notes on the battery indicator</strong></p><p>The battery percentage displayed on the base station is not absolutely accurate. Occasionally, it may show only one bar of battery remaining, but the device can still function normally for a considerable period. Please rest assured on this point.</p><p><strong>3. Normal battery life (when fully charged)</strong></p><p>BF-30 / BF-40: Probe battery life 40 hours, base station battery life 90 hours</p><p>BF-70 / BF-80: Probe battery life 33 hours, base station battery life 24 hours</p><p><strong>4. Battery specifications</strong></p><p>Our products are equipped with the following batteries:</p><p>BF-30 / BF-40: 500mAh, 3.7V</p><p>BF-70 / BF-80: 2600mAh, 3.7V</p><p>If the battery life is still insufficient, please submit your issue through the Problem Feedback feature in the app, along with a screenshot of your order, and we will process it as soon as possible.</p>
-    </div>
-  </div>
-</div>
-</div>
-</div>
+
+<script src="i18n.js"></script>
 <script>
 (function () {
-  // Toggle each item on click
-  document.querySelectorAll('.faq-q').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var expanded = btn.getAttribute('aria-expanded') === 'true';
-      var panelId = btn.getAttribute('aria-controls');
-      var panel = document.getElementById(panelId);
-      if (expanded) {
-        btn.setAttribute('aria-expanded', 'false');
-        panel.style.maxHeight = '0px';
-      } else {
-        btn.setAttribute('aria-expanded', 'true');
-        // Use scrollHeight to fit variable content
-        panel.style.maxHeight = panel.scrollHeight + 'px';
-      }
+  var DATA = window.FAQ_I18N;
+  var DEFAULT_LANG = "en";
+
+  function getLangFromUrl() {
+    var params = new URLSearchParams(window.location.search);
+    var lang = params.get("lang");
+    if (lang && DATA.langs.some(function (l) { return l.code === lang; })) {
+      return lang;
+    }
+    // 探测浏览器语言
+    var nav = (navigator.language || navigator.userLanguage || "en").toLowerCase();
+    var navBase = nav.split("-")[0];
+    if (DATA.langs.some(function (l) { return l.code === navBase; })) return navBase;
+    return DEFAULT_LANG;
+  }
+
+  function applyLang(lang) {
+    // UI 文案
+    // document.getElementById("faq-title").textContent = DATA.ui.title[lang] || DATA.ui.title[DEFAULT_LANG];
+    // document.getElementById("faq-subtitle").textContent = DATA.ui.subtitle[lang] || DATA.ui.subtitle[DEFAULT_LANG];
+    // document.getElementById("lang-label").textContent = DATA.ui.langLabel[lang] || DATA.ui.langLabel[DEFAULT_LANG];
+    // document.getElementById("expand-all").textContent = DATA.ui.expandAll[lang] || DATA.ui.expandAll[DEFAULT_LANG];
+    // document.getElementById("collapse-all").textContent = DATA.ui.collapseAll[lang] || DATA.ui.collapseAll[DEFAULT_LANG];
+    document.documentElement.lang = lang;
+
+    // 渲染列表
+    var list = document.getElementById("faq-list");
+    var html = "";
+    DATA.qa.forEach(function (item, idx) {
+      var q = item.q[lang] || item.q[DEFAULT_LANG];
+      var a = item.a[lang] || item.a[DEFAULT_LANG];
+      html += '<div class="faq-item" id="faq-' + idx + '">' +
+        '<button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-' + idx + '">' +
+          '<span class="faq-q-mark">Q</span>' +
+          '<span class="faq-q-text">' + q + '</span>' +
+          '<span class="faq-q-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>' +
+        '</button>' +
+        '<div class="faq-a" id="faq-a-' + idx + '" role="region" aria-labelledby="faq-' + idx + '">' +
+          '<div class="faq-a-inner">' + a + '</div>' +
+        '</div>' +
+      '</div>';
     });
-  });
+    list.innerHTML = html;
+    bindAccordion();
+  }
+
+  function bindAccordion() {
+    document.querySelectorAll(".faq-q").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var expanded = btn.getAttribute("aria-expanded") === "true";
+        var panel = document.getElementById(btn.getAttribute("aria-controls"));
+        if (expanded) {
+          btn.setAttribute("aria-expanded", "false");
+          panel.style.maxHeight = "0px";
+        } else {
+          btn.setAttribute("aria-expanded", "true");
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+      });
+    });
+  }
 
   function setAll(expand) {
-    document.querySelectorAll('.faq-q').forEach(function (btn) {
-      var panelId = btn.getAttribute('aria-controls');
-      var panel = document.getElementById(panelId);
+    document.querySelectorAll(".faq-q").forEach(function (btn) {
+      var panel = document.getElementById(btn.getAttribute("aria-controls"));
       if (expand) {
-        btn.setAttribute('aria-expanded', 'true');
-        panel.style.maxHeight = panel.scrollHeight + 'px';
+        btn.setAttribute("aria-expanded", "true");
+        panel.style.maxHeight = panel.scrollHeight + "px";
       } else {
-        btn.setAttribute('aria-expanded', 'false');
-        panel.style.maxHeight = '0px';
+        btn.setAttribute("aria-expanded", "false");
+        panel.style.maxHeight = "0px";
       }
     });
   }
 
-  // Recompute open panel heights on window resize so long answers still fit
-  var resizeTimer;
-  window.addEventListener('resize', function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function () {
+  // 初始化语言下拉
+  // var select = document.getElementById("lang-select");
+  DATA.langs.forEach(function (l) {
+    var opt = document.createElement("option");
+    opt.value = l.code;
+    opt.textContent = l.name;
+    // select.appendChild(opt);
+  });
+
+  var currentLang = getLangFromUrl();
+  // select.value = currentLang;
+  applyLang(currentLang);
+
+  // 切换语言：更新 URL 参数并重新渲染
+  // select.addEventListener("change", function () {
+  //   var lang = select.value;
+  //   var url = new URL(window.location.href);
+  //   url.searchParams.set("lang", lang);
+  //   window.history.replaceState({}, "", url.toString());
+  //   applyLang(lang);
+  // });
+
+  // document.getElementById("expand-all").addEventListener("click", function () { setAll(true); });
+  // document.getElementById("collapse-all").addEventListener("click", function () { setAll(false); });
+
+  // resize 时重算展开高度
+  var timer;
+  window.addEventListener("resize", function () {
+    clearTimeout(timer);
+    timer = setTimeout(function () {
       document.querySelectorAll('.faq-q[aria-expanded="true"]').forEach(function (btn) {
-        var panel = document.getElementById(btn.getAttribute('aria-controls'));
-        panel.style.maxHeight = panel.scrollHeight + 'px';
+        var panel = document.getElementById(btn.getAttribute("aria-controls"));
+        panel.style.maxHeight = panel.scrollHeight + "px";
       });
     }, 120);
   });
