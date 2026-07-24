@@ -1,246 +1,334 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en-US">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FAQ</title>
-<style>
-  :root {
-    --bg: #ffffff;
-    --fg: #1f2329;
-    --muted: #646a73;
-    --accent: #3370ff;
-    --accent-soft: #e8efff;
-    --border: #e4e6eb;
-    --border-strong: #d0d3d9;
-    --code-bg: #f5f6f7;
-    --quote-bg: #f7f9fc;
-    --q-bg: #f8faff;
-    --q-bg-hover: #eef4ff;
-    --q-active: #e8efff;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; padding: 0;
-    background: var(--bg); color: var(--fg);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
-                 "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
-    font-size: 16px; line-height: 1.75;
-    -webkit-font-smoothing: antialiased;
-  }
-  /* .container { max-width: 880px; margin: 0 auto; padding: 48px 40px 96px; } */
-
-  /* .faq-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; } */
-  /* .faq-header h1 { margin: 0 0 8px; font-size: 1.9em; font-weight: 700; color: var(--fg); } */
-  /* .faq-header p { margin: 0; color: var(--muted); font-size: 0.95em; } */
-
-  /* Language switcher */
-  /* .lang-switch { display: flex; align-items: center; gap: 8px; } */
-  /* .lang-switch label { color: var(--muted); font-size: 0.85em; } */
-  /* .lang-switch select {
-    padding: 7px 12px; font-size: 0.9em; font-family: inherit; color: var(--fg);
-    background: #fff; border: 1px solid var(--border-strong); border-radius: 8px;
-    cursor: pointer; transition: border-color .15s ease, box-shadow .15s ease;
-  } */
-  /* .lang-switch select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); } */
-
-  /* Expand / collapse controls */
-  /* .faq-controls { display: flex; gap: 10px; margin-bottom: 16px; } */
-  /* .faq-controls button {
-    padding: 7px 14px; font-size: 0.85em; color: var(--accent);
-    background: var(--accent-soft); border: 1px solid transparent;
-    border-radius: 6px; cursor: pointer; font-family: inherit;
-    transition: background .15s ease;
-  } */
-  /* .faq-controls button:hover { background: #dbe7ff; } */
-
-  /* Accordion list */
-  .faq-list { border-top: 1px solid var(--border); }
-  .faq-item { border-bottom: 1px solid var(--border); }
-
-  .faq-q {
-    width: 100%; display: flex; align-items: center; gap: 14px;
-    padding: 18px 18px; background: var(--q-bg); border: none;
-    border-left: 3px solid transparent; text-align: left; cursor: pointer;
-    font: inherit; color: var(--fg);
-    transition: background .15s ease, border-color .15s ease;
-  }
-  .faq-q:hover { background: var(--q-bg-hover); }
-  .faq-q:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-
-  .faq-q-mark {
-    flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center;
-    width: 28px; height: 28px; border-radius: 8px; background: var(--accent); color: #fff;
-    font-weight: 700; font-size: 0.85em; letter-spacing: 0.02em;
-  }
-  .faq-q-text { flex: 1 1 auto; font-weight: 600; color: var(--fg); line-height: 1.5; }
-  .faq-q-arrow { flex: 0 0 auto; color: var(--muted); display: inline-flex; transition: transform .2s ease, color .15s ease; }
-  .faq-q[aria-expanded="true"] .faq-q-arrow { transform: rotate(180deg); color: var(--accent); }
-  .faq-q[aria-expanded="true"] { background: var(--q-active); border-left-color: var(--accent); }
-
-  .faq-a { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
-  .faq-a-inner {
-    padding: 4px 20px 24px 52px; border-left: 3px solid var(--accent-soft);
-    margin-left: 18px;
-  }
-
-  .faq-a-inner p { margin: 0 0 1em; }
-  .faq-a-inner p:last-child { margin-bottom: 0; }
-  .faq-a-inner ul, .faq-a-inner ol { margin: 0 0 1em; padding-left: 1.6em; }
-  .faq-a-inner li { margin: 0.3em 0; }
-  .faq-a-inner strong { font-weight: 700; color: #1f2329; }
-  .faq-a-inner a { color: var(--accent); text-decoration: none; }
-  .faq-a-inner a:hover { text-decoration: underline; }
-  .faq-a-inner img { max-width: 100%; height: auto; border-radius: 6px; margin: 1em 0; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
-  .faq-a-inner table { width: 100%; border-collapse: collapse; margin: 1.2em 0; font-size: 0.95em; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-  .faq-a-inner th, .faq-a-inner td { padding: 10px 14px; border: 1px solid var(--border); text-align: left; vertical-align: top; }
-  .faq-a-inner th { background: var(--accent-soft); font-weight: 600; }
-  .faq-a-inner tr:nth-child(even) td { background: #fafbfc; }
-  .faq-a-inner blockquote { margin: 1em 0; padding: 12px 18px; background: var(--quote-bg); border-left: 4px solid var(--accent); color: var(--muted); border-radius: 0 6px 6px 0; }
-  .faq-a-inner code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; color: #d63384; }
-
-  @media (max-width: 600px) {
-    .container { padding: 28px 18px 64px; }
-    .faq-a-inner { padding-left: 32px; margin-left: 12px; }
-    .faq-q { padding: 15px 14px; }
-    .faq-q-mark { width: 24px; height: 24px; font-size: 0.78em; }
-  }
-</style>
-</head>
-<body>
-<div class="container">
-  <!-- <div class="faq-top"> -->
-    <!-- <div class="faq-header"> -->
-      <!-- <h1 id="faq-title">FAQ</h1> -->
-      <!-- <p id="faq-subtitle">Click a question to expand the answer</p> -->
-    <!-- </div> -->
-    <!-- <div class="lang-switch">
-      <label for="lang-select" id="lang-label">Language</label>
-      <select id="lang-select"></select>
-    </div> -->
-  <!-- </div> -->
-  <!-- <div class="faq-controls">
-    <button type="button" id="expand-all">Expand all</button>
-    <button type="button" id="collapse-all">Collapse all</button>
-  </div> -->
-  <div class="faq-list" id="faq-list"><!-- 由 JS 渲染 --></div>
-</div>
-
-<script src="i18n.js"></script>
-<script>
-(function () {
-  var DATA = window.FAQ_I18N;
-  var DEFAULT_LANG = "en";
-
-  function getLangFromUrl() {
-    var params = new URLSearchParams(window.location.search);
-    var lang = params.get("lang");
-    if (lang && DATA.langs.some(function (l) { return l.code === lang; })) {
-      return lang;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #1f2329;
+      --muted: #646a73;
+      --accent: #3370ff;
+      --accent-soft: #e8efff;
+      --border: #e4e6eb;
+      --border-strong: #d0d3d9;
+      --code-bg: #f5f6f7;
+      --quote-bg: #f7f9fc;
+      --q-bg: #f8faff;
+      --q-bg-hover: #eef4ff;
+      --q-active: #e8efff;
     }
-    // 探测浏览器语言
-    var nav = (navigator.language || navigator.userLanguage || "en").toLowerCase();
-    var navBase = nav.split("-")[0];
-    if (DATA.langs.some(function (l) { return l.code === navBase; })) return navBase;
-    return DEFAULT_LANG;
-  }
 
-  function applyLang(lang) {
-    // UI 文案
-    // document.getElementById("faq-title").textContent = DATA.ui.title[lang] || DATA.ui.title[DEFAULT_LANG];
-    // document.getElementById("faq-subtitle").textContent = DATA.ui.subtitle[lang] || DATA.ui.subtitle[DEFAULT_LANG];
-    // document.getElementById("lang-label").textContent = DATA.ui.langLabel[lang] || DATA.ui.langLabel[DEFAULT_LANG];
-    // document.getElementById("expand-all").textContent = DATA.ui.expandAll[lang] || DATA.ui.expandAll[DEFAULT_LANG];
-    // document.getElementById("collapse-all").textContent = DATA.ui.collapseAll[lang] || DATA.ui.collapseAll[DEFAULT_LANG];
-    document.documentElement.lang = lang;
+    * {
+      box-sizing: border-box;
+    }
 
-    // 渲染列表
-    var list = document.getElementById("faq-list");
-    var html = "";
-    DATA.qa.forEach(function (item, idx) {
-      var q = item.q[lang] || item.q[DEFAULT_LANG];
-      var a = item.a[lang] || item.a[DEFAULT_LANG];
-      html += '<div class="faq-item" id="faq-' + idx + '">' +
-        '<button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-' + idx + '">' +
-          '<span class="faq-q-mark">Q</span>' +
-          '<span class="faq-q-text">' + q + '</span>' +
-          '<span class="faq-q-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>' +
-        '</button>' +
-        '<div class="faq-a" id="faq-a-' + idx + '" role="region" aria-labelledby="faq-' + idx + '">' +
-          '<div class="faq-a-inner">' + a + '</div>' +
-        '</div>' +
-      '</div>';
-    });
-    list.innerHTML = html;
-    bindAccordion();
-  }
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
 
-  function bindAccordion() {
-    document.querySelectorAll(".faq-q").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        var expanded = btn.getAttribute("aria-expanded") === "true";
-        var panel = document.getElementById(btn.getAttribute("aria-controls"));
-        if (expanded) {
-          btn.setAttribute("aria-expanded", "false");
-          panel.style.maxHeight = "0px";
-        } else {
-          btn.setAttribute("aria-expanded", "true");
-          panel.style.maxHeight = panel.scrollHeight + "px";
-        }
-      });
-    });
-  }
+    /* Accordion list */
+    .faq-list {
+      border-top: 1px solid var(--border);
+    }
 
-  function setAll(expand) {
-    document.querySelectorAll(".faq-q").forEach(function (btn) {
-      var panel = document.getElementById(btn.getAttribute("aria-controls"));
-      if (expand) {
-        btn.setAttribute("aria-expanded", "true");
-        panel.style.maxHeight = panel.scrollHeight + "px";
-      } else {
-        btn.setAttribute("aria-expanded", "false");
-        panel.style.maxHeight = "0px";
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-q {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 18px;
+      background: var(--q-bg);
+      border: none;
+      border-left: 3px solid transparent;
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+      color: var(--fg);
+      transition: background .15s ease, border-color .15s ease;
+    }
+
+    .faq-q:hover {
+      background: var(--q-bg-hover);
+    }
+
+    .faq-q:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: -2px;
+    }
+
+    .faq-q-mark {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85em;
+      letter-spacing: 0.02em;
+    }
+
+    .faq-q-text {
+      flex: 1 1 auto;
+      font-weight: 600;
+      color: var(--fg);
+      line-height: 1.5;
+    }
+
+    .faq-q-arrow {
+      flex: 0 0 auto;
+      color: var(--muted);
+      display: inline-flex;
+      transition: transform .2s ease, color .15s ease;
+    }
+
+    .faq-q[aria-expanded="true"] .faq-q-arrow {
+      transform: rotate(180deg);
+      color: var(--accent);
+    }
+
+    .faq-q[aria-expanded="true"] {
+      background: var(--q-active);
+      border-left-color: var(--accent);
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .3s ease;
+    }
+
+    .faq-a-inner {
+      padding: 4px 20px 24px 52px;
+      border-left: 3px solid var(--accent-soft);
+      margin-left: 18px;
+    }
+
+    .faq-a-inner p {
+      margin: 0 0 1em;
+    }
+
+    .faq-a-inner p:last-child {
+      margin-bottom: 0;
+    }
+
+    .faq-a-inner ul,
+    .faq-a-inner ol {
+      margin: 0 0 1em;
+      padding-left: 1.6em;
+    }
+
+    .faq-a-inner li {
+      margin: 0.3em 0;
+    }
+
+    .faq-a-inner strong {
+      font-weight: 700;
+      color: #1f2329;
+    }
+
+    .faq-a-inner a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .faq-a-inner a:hover {
+      text-decoration: underline;
+    }
+
+    .faq-a-inner img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      margin: 1em 0;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+    }
+
+    .faq-a-inner table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.2em 0;
+      font-size: 0.95em;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .faq-a-inner th,
+    .faq-a-inner td {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .faq-a-inner th {
+      background: var(--accent-soft);
+      font-weight: 600;
+    }
+
+    .faq-a-inner tr:nth-child(even) td {
+      background: #fafbfc;
+    }
+
+    .faq-a-inner blockquote {
+      margin: 1em 0;
+      padding: 12px 18px;
+      background: var(--quote-bg);
+      border-left: 4px solid var(--accent);
+      color: var(--muted);
+      border-radius: 0 6px 6px 0;
+    }
+
+    .faq-a-inner code {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      background: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: #d63384;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 28px 18px 64px;
       }
-    });
-  }
 
-  // 初始化语言下拉
-  // var select = document.getElementById("lang-select");
-  DATA.langs.forEach(function (l) {
-    var opt = document.createElement("option");
-    opt.value = l.code;
-    opt.textContent = l.name;
-    // select.appendChild(opt);
-  });
+      .faq-a-inner {
+        padding-left: 32px;
+        margin-left: 12px;
+      }
 
-  var currentLang = getLangFromUrl();
-  // select.value = currentLang;
-  applyLang(currentLang);
+      .faq-q {
+        padding: 15px 14px;
+      }
 
-  // 切换语言：更新 URL 参数并重新渲染
-  // select.addEventListener("change", function () {
-  //   var lang = select.value;
-  //   var url = new URL(window.location.href);
-  //   url.searchParams.set("lang", lang);
-  //   window.history.replaceState({}, "", url.toString());
-  //   applyLang(lang);
-  // });
+      .faq-q-mark {
+        width: 24px;
+        height: 24px;
+        font-size: 0.78em;
+      }
+    }
+  </style>
+</head>
 
-  // document.getElementById("expand-all").addEventListener("click", function () { setAll(true); });
-  // document.getElementById("collapse-all").addEventListener("click", function () { setAll(false); });
+<body>
+  <div class="container">
+    <div class="faq-list" id="faq-list"><!-- 由 JS 渲染 --></div>
+  </div>
 
-  // resize 时重算展开高度
-  var timer;
-  window.addEventListener("resize", function () {
-    clearTimeout(timer);
-    timer = setTimeout(function () {
-      document.querySelectorAll('.faq-q[aria-expanded="true"]').forEach(function (btn) {
-        var panel = document.getElementById(btn.getAttribute("aria-controls"));
-        panel.style.maxHeight = panel.scrollHeight + "px";
+  <script src="i18n.js"></script>
+  <script>
+    (function () {
+      var DATA = window.FAQ_I18N;
+      var DEFAULT_LANG = "en";
+
+      function getLangFromUrl() {
+        var params = new URLSearchParams(window.location.search);
+        var lang = params.get("lang");
+        if (lang && DATA.langs.some(function (l) { return l.code === lang; })) {
+          return lang;
+        }
+        // 探测浏览器语言
+        var nav = ("en" || navigator.language || navigator.userLanguage).toLowerCase();
+        var navBase = nav.split("-")[0];
+        if (DATA.langs.some(function (l) { return l.code === navBase; })) return navBase;
+        return DEFAULT_LANG;
+      }
+
+      function applyLang(lang) {
+        document.documentElement.lang = lang;
+        // 渲染列表
+        var list = document.getElementById("faq-list");
+        var html = "";
+        DATA.qa.forEach(function (item, idx) {
+          var q = item.q[lang] || item.q[DEFAULT_LANG];
+          var a = item.a[lang] || item.a[DEFAULT_LANG];
+          html += '<div class="faq-item" id="faq-' + idx + '">' +
+            '<button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-' + idx + '">' +
+            '<span class="faq-q-mark">Q</span>' +
+            '<span class="faq-q-text">' + q + '</span>' +
+            '<span class="faq-q-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></span>' +
+            '</button>' +
+            '<div class="faq-a" id="faq-a-' + idx + '" role="region" aria-labelledby="faq-' + idx + '">' +
+            '<div class="faq-a-inner">' + a + '</div>' +
+            '</div>' +
+            '</div>';
+        });
+        list.innerHTML = html;
+        bindAccordion();
+      }
+
+      function bindAccordion() {
+        document.querySelectorAll(".faq-q").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var expanded = btn.getAttribute("aria-expanded") === "true";
+            var panel = document.getElementById(btn.getAttribute("aria-controls"));
+            if (expanded) {
+              btn.setAttribute("aria-expanded", "false");
+              panel.style.maxHeight = "0px";
+            } else {
+              btn.setAttribute("aria-expanded", "true");
+              panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+          });
+        });
+      }
+
+      function setAll(expand) {
+        document.querySelectorAll(".faq-q").forEach(function (btn) {
+          var panel = document.getElementById(btn.getAttribute("aria-controls"));
+          if (expand) {
+            btn.setAttribute("aria-expanded", "true");
+            panel.style.maxHeight = panel.scrollHeight + "px";
+          } else {
+            btn.setAttribute("aria-expanded", "false");
+            panel.style.maxHeight = "0px";
+          }
+        });
+      }
+
+      // 初始化语言下拉
+      DATA.langs.forEach(function (l) {
+        var opt = document.createElement("option");
+        opt.value = l.code;
+        opt.textContent = l.name;
       });
-    }, 120);
-  });
-})();
-</script>
+
+      var currentLang = getLangFromUrl();
+      applyLang(currentLang);
+
+      // resize 时重算展开高度
+      var timer;
+      window.addEventListener("resize", function () {
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+          document.querySelectorAll('.faq-q[aria-expanded="true"]').forEach(function (btn) {
+            var panel = document.getElementById(btn.getAttribute("aria-controls"));
+            panel.style.maxHeight = panel.scrollHeight + "px";
+          });
+        }, 120);
+      });
+    })();
+  </script>
 </body>
+
 </html>
