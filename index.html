@@ -247,10 +247,6 @@
         if (lang && DATA.langs.some(function (l) { return l.code === lang; })) {
           return lang;
         }
-        // 探测浏览器语言
-        // var nav = ("en" || navigator.language || navigator.userLanguage).toLowerCase();
-        // var navBase = nav.split("-")[0];
-        // if (DATA.langs.some(function (l) { return l.code === navBase; })) return navBase;
         return DEFAULT_LANG;
       }
 
@@ -293,40 +289,8 @@
         });
       }
 
-      function setAll(expand) {
-        document.querySelectorAll(".faq-q").forEach(function (btn) {
-          var panel = document.getElementById(btn.getAttribute("aria-controls"));
-          if (expand) {
-            btn.setAttribute("aria-expanded", "true");
-            panel.style.maxHeight = panel.scrollHeight + "px";
-          } else {
-            btn.setAttribute("aria-expanded", "false");
-            panel.style.maxHeight = "0px";
-          }
-        });
-      }
-
-      // 初始化语言下拉
-      DATA.langs.forEach(function (l) {
-        var opt = document.createElement("option");
-        opt.value = l.code;
-        opt.textContent = l.name;
-      });
-
       var currentLang = getLangFromUrl();
       applyLang(currentLang);
-
-      // resize 时重算展开高度
-      var timer;
-      window.addEventListener("resize", function () {
-        clearTimeout(timer);
-        timer = setTimeout(function () {
-          document.querySelectorAll('.faq-q[aria-expanded="true"]').forEach(function (btn) {
-            var panel = document.getElementById(btn.getAttribute("aria-controls"));
-            panel.style.maxHeight = panel.scrollHeight + "px";
-          });
-        }, 120);
-      });
     })();
   </script>
 </body>
