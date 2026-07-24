@@ -248,9 +248,9 @@
           return lang;
         }
         // 探测浏览器语言
-        var nav = ("en" || navigator.language || navigator.userLanguage).toLowerCase();
-        var navBase = nav.split("-")[0];
-        if (DATA.langs.some(function (l) { return l.code === navBase; })) return navBase;
+        // var nav = ("en" || navigator.language || navigator.userLanguage).toLowerCase();
+        // var navBase = nav.split("-")[0];
+        // if (DATA.langs.some(function (l) { return l.code === navBase; })) return navBase;
         return DEFAULT_LANG;
       }
 
