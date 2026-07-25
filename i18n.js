@@ -1,20 +1,6 @@
 // FAQ 多语言数据 —— 支持 en/zh/ja/de/fr/es
 // 每条 QA 保留 HTML 格式标签，仅翻译文本部分
 window.FAQ_I18N = {
-  ui: {
-    title: { en: "FAQ", zh: "常见问题", ja: "よくある質問", de: "FAQ", fr: "FAQ", es: "Preguntas frecuentes" },
-    subtitle: {
-      en: "Click a question to expand the answer",
-      zh: "点击下方问题展开查看回答",
-      ja: "質問をクリックして回答を展開",
-      de: "Klicken Sie auf eine Frage, um die Antwort aufzuklappen",
-      fr: "Cliquez sur une question pour afficher la réponse",
-      es: "Haga clic en una pregunta para expandir la respuesta"
-    },
-    expandAll: { en: "Expand all", zh: "全部展开", ja: "すべて展開", de: "Alle aufklappen", fr: "Tout déplier", es: "Expandir todo" },
-    collapseAll: { en: "Collapse all", zh: "全部收起", ja: "すべて折りたたむ", de: "Alle einklappen", fr: "Tout replier", es: "Contraer todo" },
-    langLabel: { en: "Language", zh: "语言", ja: "言語", de: "Sprache", fr: "Langue", es: "Idioma" }
-  },
   langs: [
     { code: "en", name: "English" },
     { code: "zh", name: "简体中文" },
